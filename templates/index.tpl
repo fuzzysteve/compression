@@ -4,6 +4,7 @@
 <p>Mineral compression is the art of using modules to make your minerals take up less space than they would normally take up. This can be fairly significant.</p>
 <p>Fill in the quantity of each mineral that you need (This assumes 100% return. bump your numbers if you don't have perfect refining). It'll try to keep to that number. Maximum extra is there as it's highly unlikely that you'll be dead on, but you'll be able to save on space, if you're willing to go over. </p>
 <p>Put -1 in as your maxmium extra, if you're going for maximum compression and not caring about how much extra you might bring</p>
+<p>See <a href="/compression/blueprints.php">the blueprint list</a> to see what modules might be used</p>
 <form action="calculate.php" method="POST">
 <table>
 <thead>

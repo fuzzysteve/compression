@@ -21,4 +21,8 @@
 {block name=body}{/block}
 </div>
 {include file='file:/home/web/fuzzwork/htdocs/bootstrap/footer.php' }
+{block name=extraend}{/block}
 {/nocache}
+
+</body>
+</html>
