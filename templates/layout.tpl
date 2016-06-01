@@ -16,7 +16,7 @@
 {include file='file:/home/web/fuzzwork/htdocs/bootstrap/header.php' }
 </head>
 <body {block name=bodyattributes}{/block}>
-{include file='file:/home/web/fuzzwork/htdocs/menu/menubootstrap.php' }
+{include_php file='/home/web/fuzzwork/htdocs/menu/menubootstrap.php' }
 <div class='container'>
 {block name=body}{/block}
 </div>

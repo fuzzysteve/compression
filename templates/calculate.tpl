@@ -6,11 +6,11 @@
 <h2>Solutions</h2>
 <table class='table-striped table table-bordered'>
 <thead>
-<tr><th>Module Type</th><th>Quantity</th><th>Volume</th></tr>
+<tr><th>Module Type</th><th>Quantity</th><th>Volume</th><th>Refine rate</th></tr>
 </thead>
 <tbody>
 {foreach $modules as $module}
-    <tr><td>{$module[0]}</td><td class='text-right'>{$module[1]}</td><td class='text-right'>{$module[2]}</td></tr>
+    <tr><td>{$module[0]}</td><td class='text-right'>{$module[1]}</td><td class='text-right'>{$module[2]}</td><td>{$module[3]|string_format:"%.2f"}</td></tr>
 {/foreach}
 </tbody>
 <tfoot>

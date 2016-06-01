@@ -22,13 +22,11 @@ foreach ($vars as $type) {
     }
 }
 
-#$requirements=array(200000000,200000000,0,0,0,0,0,0);
-#$overage=array(10000000,100000000,2000000,1000000,500000,50000,5000,1000);
 
 
 $sql='
-select id-1 id,(volume*portionsize) volume from evesupport.compression 
-join invTypes on (compression.typeid=invTypes.typeid) order by id asc
+select id-1 id, volume from evesupport.compressedOre 
+join invTypes on (compressedOre.typeid=invTypes.typeid) order by id asc
 ';
 
 $stmt = $dbh->prepare($sql);
@@ -46,12 +44,14 @@ $max=array_map("sum", $requirements, $overage);
 
 $ret = lpsolve('set_obj_fn', $lp, $volume);
 
-foreach (range(1, 21) as $col) {
+foreach (range(1, 16) as $col) {
     lpsolve('set_int', $lp, $col, 1);
 }
 
-$sql='select id,coalesce(quantity,0) quantity from evesupport.compression
-left join invTypeMaterials on (compression.typeid=invTypeMaterials.typeid and materialtypeid=:mineral) order by id asc';
+$sql='select id,coalesce(quantity,0) quantity,valueInt skill from evesupport.compressedOre
+join dgmTypeAttributes on (compressedOre.typeid=dgmTypeAttributes.typeid and attributeID=790)
+left join invTypeMaterials on (compressedOre.typeid=invTypeMaterials.typeid and materialtypeid=:mineral)
+order by id asc';
 
 $stmt = $dbh->prepare($sql);
 
@@ -59,11 +59,15 @@ $mineralid=array(34,35,36,37,38,39,40,11399);
 
 
 $x=1;
+$refinebase=1*($_POST['facility']/100)
+    *(($_POST['skill-3385']*0.03)+1)
+    *(($_POST['skill-3389']*0.02)+1)
+    *(($_POST['implant']/100)+1);
 foreach (range(0, 7) as $min) {
     $numbers=array();
     $stmt->execute(array(":mineral"=>$mineralid[$min]));
     while ($row = $stmt->fetchObject()) {
-        $numbers[$row->id-1]=(int)$row->quantity;
+        $numbers[$row->id-1]=floor(((int)$row->quantity)*$refinebase*(($_POST['skill-'.$row->skill]*0.02)+1));
     }
     $ret = lpsolve('add_constraint', $lp, $numbers, GE, $requirements[$min]);
     if ($overage[$min]>=0) {
@@ -80,20 +84,28 @@ $totalvolume=0;
 $modules=array();
 if ($solution == 0) {
 
-    $sql="select id-1 id,typename from evesupport.compression 
-    join invTypes on (compression.typeid=invTypes.typeid) order by id asc";
+    $sql="select id-1 id,typename,valueInt skill from evesupport.compressedOre
+    join dgmTypeAttributes on (compressedOre.typeid=dgmTypeAttributes.typeid and attributeID=790)
+    join invTypes on (compressedOre.typeid=invTypes.typeid) order by id asc";
     $names=array();
+    $skill=array();
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     while ($row = $stmt->fetchObject()) {
         $names[$row->id]=$row->typename;
+        $skill[$row->id]=$row->skill;
     }
 
 
     foreach ($x[0] as $key => $value) {
         if ($value>0) {
-            echo $key;
-            $modules[]=array($names[$key], $value, $volume[$key]*$value);
+            #echo $key;
+            $modules[]=array(
+                $names[$key],
+                $value,
+                $volume[$key]*$value,
+                $refinebase*(($_POST['skill-'.$skill[$key]]*0.02)+1)
+            );
             $totalvolume+=$volume[$key]*$value;
         }
     }
