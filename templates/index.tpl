@@ -53,6 +53,7 @@ Things affecting reprocessing
 <option value='all'>All ores</option>
 <option value='highsec'>Highsec Ores</option>
 <option value='lns'>LNS Refine Ores</option>
+<option value='nullsec'>Nullsec only Ores</option>
 </select>
 <table class=table>
 <thead>

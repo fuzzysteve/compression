@@ -78,9 +78,11 @@ foreach (range(0, 7) as $min) {
 
 $orelimit= array_fill(0, $blueprints, Infinite);
 if ($_POST['oretype']=='highsec') {
-    $orelimit=[0,0,0,0,0,0,0,Infinite,0,Infinite,0,Infinite,Infinite,Infinite,Infinite];
+    $orelimit=[0,0,0,0,0,0,0,Infinite,0,Infinite,0,Infinite,Infinite,Infinite,Infinite,0];
 } elseif ($_POST['oretype']=='lns') {
-    $orelimit=[Infinite,Infinite,Infinite,Infinite,Infinite,Infinite,Infinite,0,Infinite,0,Infinite,0,0,0,0];
+    $orelimit=[Infinite,Infinite,Infinite,Infinite,Infinite,Infinite,Infinite,0,Infinite,0,Infinite,0,0,0,0,Infinite];
+} elseif ($_POST['oretype']=='nullsec') {
+    $orelimit=[Infinite,Infinite,Infinite,Infinite,0,0,0,0,Infinite,0,Infinite,0,0,0,0,Infinite];
 }
 
 
