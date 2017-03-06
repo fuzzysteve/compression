@@ -25,7 +25,7 @@ foreach ($vars as $type) {
 
 
 $sql='
-select id-1 id, volume from evesupport.compressedOre 
+select id-1 id, volume,typename from evesupport.compressedOre 
 join invTypes on (compressedOre.typeid=invTypes.typeid) order by id asc
 ';
 
@@ -75,13 +75,23 @@ foreach (range(0, 7) as $min) {
     }
 }
 
+
+$orelimit= array_fill(0, $blueprints, Infinite);
+if ($_POST['oretype']=='highsec') {
+    $orelimit=[0,0,0,0,0,0,0,Infinite,0,Infinite,0,Infinite,Infinite,Infinite,Infinite];
+}
+
+
+
+
+
 $ret = lpsolve('set_lowbo', $lp, array_fill(0, $blueprints, 0));
-$ret = lpsolve('set_upbo', $lp, array_fill(0, $blueprints, Infinite));
+$ret = lpsolve('set_upbo', $lp, $orelimit);
 $solution = lpsolve('solve', $lp);
 $x = lpsolve('get_variables', $lp);
-
 $totalvolume=0;
 $modules=array();
+$actual=array();
 if ($solution == 0) {
 
     $sql="select id-1 id,typename,valueInt skill from evesupport.compressedOre
@@ -97,6 +107,13 @@ if ($solution == 0) {
     }
 
 
+    $sql=<<<EOS
+select materialtypeid,floor(quantity*:quantity*:refine) quantity 
+from eve.invTypeMaterials itm 
+join evesupport.compressedOre co 
+where itm.typeid=co.typeid and id=:type+1
+EOS;
+    $stmt = $dbh->prepare($sql);
     foreach ($x[0] as $key => $value) {
         if ($value>0) {
             #echo $key;
@@ -107,6 +124,13 @@ if ($solution == 0) {
                 $refinebase*(($_POST['skill-'.$skill[$key]]*0.02)+1)
             );
             $totalvolume+=$volume[$key]*$value;
+            $stmt->execute(array(':type'=>$key,':quantity'=>$value,':refine'=>$refinebase*(($_POST['skill-'.$skill[$key]]*0.02)+1)));
+            while ($materialval = $stmt->fetchObject()) {
+                if (!isset($actual[$materialval->materialtypeid])) {
+                    $actual[$materialval->materialtypeid]=0;
+                }
+                $actual[$materialval->materialtypeid]+=$materialval->quantity;
+            }
         }
     }
 }
@@ -119,6 +143,6 @@ $smarty->assign('modules', $modules);
 $smarty->assign('solution', $solution);
 $smarty->assign('requirements', $requirements);
 $smarty->assign('overage', $overage);
-
+$smarty->assign('actual', $actual);
 #var_dump($modules);
 $smarty->display('calculate.tpl');

@@ -20,16 +20,16 @@
 <p>No solution found. Try loosening up your maximums</p>
 {/if}
 <hr>
-<h2>Requirements</h2>
+<h2>Requirements And Output</h2>
 <table class="table table-striped table-bordered">
-<tr><th>Mineral</th><th>Required</th><th>Extra</th></tr>
-<tr><th>Tritanium</th><td>{$requirements[0]}</td><td>{$overage[0]}</td></tr>
-<tr><th>Pyerite</th><td>{$requirements[1]}</td><td>{$overage[1]}</td></tr>
-<tr><th>Mexallon</th><td>{$requirements[2]}</td><td>{$overage[2]}</td></tr>
-<tr><th>Isogen</th><td>{$requirements[3]}</td><td>{$overage[3]}</td></tr>
-<tr><th>Nocxium</th><td>{$requirements[4]}</td><td>{$overage[4]}</td></tr>
-<tr><th>Zydrine</th><td>{$requirements[5]}</td><td>{$overage[5]}</td></tr>
-<tr><th>Megacyte</th><td>{$requirements[6]}</td><td>{$overage[6]}</td></tr>
-<tr><th>Morphite</th><td>{$requirements[7]}</td><td>{$overage[7]}</td></tr>
+<tr><th>Mineral</th><th>Required</th><th>Extra</th><th>Actual Output</th></tr>
+<tr><th>Tritanium</th><td>{$requirements[0]}</td><td>{$overage[0]}</td><td>{$actual[34]}</td></tr>
+<tr><th>Pyerite</th><td>{$requirements[1]}</td><td>{$overage[1]}</td><td>{$actual[35]}</td></tr>
+<tr><th>Mexallon</th><td>{$requirements[2]}</td><td>{$overage[2]}</td><td>{$actual[36]}</td></tr>
+<tr><th>Isogen</th><td>{$requirements[3]}</td><td>{$overage[3]}</td><td>{$actual[37]}</td></tr>
+<tr><th>Nocxium</th><td>{$requirements[4]}</td><td>{$overage[4]}</td><td>{$actual[38]}</td></tr>
+<tr><th>Zydrine</th><td>{$requirements[5]}</td><td>{$overage[5]}</td><td>{$actual[39]}</td></tr>
+<tr><th>Megacyte</th><td>{$requirements[6]}</td><td>{$overage[6]}</td><td>{$actual[40]}</td></tr>
+<tr><th>Morphite</th><td>{$requirements[7]}</td><td>{$overage[7]}</td><td>{$actual[11399]}</td></tr>
 </table>
 {/block}

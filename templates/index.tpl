@@ -49,6 +49,7 @@ Things affecting reprocessing
 </div>
 </div>
 </div>
+<label for='oretype'>Ore Restrictions</label> <select name='oretype' id='oretype'><option value='all'>All ores</option><option value='highsec'>Highsec Ores</option></select>
 <table class=table>
 <thead>
 <tr><th>Mineral Type</th><th>Required Quantity</th><th>Maximum Extra</th></tr>
