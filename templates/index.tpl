@@ -20,29 +20,44 @@ Things affecting reprocessing
 <tr><th>Skill</th><th>Skill level</th></tr>
 </thead>
 <tbody>
-<tr><th>Refining</th><td><select name='skill-3385'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Refining</th><td><select name='skill-3385'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
 <tr><th>Refining Efficiency</th><td><select name='skill-3389'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Arkonor Processing</th><td><select name='skill-12180'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Bistot Processing</th><td><select name='skill-12181'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Crokite Processing</th><td><select name='skill-12182'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Dark Ochre Processing</th><td><select name='skill-12183'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Gneiss Processing</th><td><select name='skill-12184'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Hedbergite Processing</th><td><select name='skill-12185'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Hemorphite Processing</th><td><select name='skill-12186'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Jaspet Processing</th><td><select name='skill-12187'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Kernite Processing</th><td><select name='skill-12188'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Mercoxit Processing</th><td><select name='skill-12189'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Omber Processing</th><td><select name='skill-12190'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Plagioclase Processing</th><td><select name='skill-12191'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Pyroxeres Processing</th><td><select name='skill-12192'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Scordite Processing</th><td><select name='skill-12193'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Spodumain Processing</th><td><select name='skill-12194'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Arkonor Processing</th><td><select name='skill-12180'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Bistot Processing</th><td><select name='skill-12181'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Crokite Processing</th><td><select name='skill-12182'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Dark Ochre Processing</th><td><select name='skill-12183'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Gneiss Processing</th><td><select name='skill-12184'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Hedbergite Processing</th><td><select name='skill-12185'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Hemorphite Processing</th><td><select name='skill-12186'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Jaspet Processing</th><td><select name='skill-12187'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Kernite Processing</th><td><select name='skill-12188'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Mercoxit Processing</th><td><select name='skill-12189'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Omber Processing</th><td><select name='skill-12190'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Plagioclase Processing</th><td><select name='skill-12191'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Pyroxeres Processing</th><td><select name='skill-12192'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Scordite Processing</th><td><select name='skill-12193'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Spodumain Processing</th><td><select name='skill-12194'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
 <tr><th>Veldspar Processing</th><td><select name='skill-12195'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
-<tr><th>Ice Processing</th><td><select name='skill-18025'><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
+<tr><th>Ice Processing</th><td><select name='skill-18025'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></td></tr>
 </tbody>
 <tbody>
 <tr><th>Implant percentage</th><td><select name='implant'><option>0</option><option>1</option><option>2</option><option selected>4</option></select></td></tr>
-<tr><th>Facility Percentage</th><td><select name='facility'><option>50</option><option>52</option><option>53</option><option selected>54</option><option>56</option><option>58</option><option>60</option></select></td></tr>
+<tr><th>Facility Percentage</th><td><select name='facility'>
+<option>50</option>
+<option>52</option>
+<option>53</option>
+<option selected>54</option>
+<option>56</option>
+<option>58</option>
+<option>60</option>
+<option value=52>Highsec T1</option>
+<option value=54>Highsec T2</option>
+<option value=55.12>Lowsec T1</option>
+<option value=57.24>Lowsec T2</option>
+<option value=58.24>Nullsec T1</option>
+<option value=60.48>Nullsec T2</option>
+
+</select></td></tr>
 </tbody>
 </table>
 </div>
