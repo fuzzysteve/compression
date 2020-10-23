@@ -69,7 +69,9 @@ Things affecting reprocessing
 <option value='highsec'>Highsec Ores</option>
 <option value='lns'>LNS Refine Ores</option>
 <option value='nullsec'>Nullsec only Ores</option>
+<option value='custom'>Custom Bitmap</option>
 </select>
+<label for='custombitmap'>Custom Ore Bitmap</label>&nbsp;<input name="custombitmap" placeholder="Ignore if you're not using custom" size=30><a href="//www.fuzzwork.co.uk/custom-ore">help</a>
 <table class=table>
 <thead>
 <tr><th>Mineral Type</th><th>Required Quantity</th><th>Maximum Extra</th></tr>

@@ -7,7 +7,7 @@ require_once($basedir.'/includes/sum.php');
 
 
 
-$vars=array('trit','pye','mex','iso','nocx','zyd','mega','morp');
+$vars=array('hw','lo','heiso','sc','hyiso','oxyiso','nitroiso');
 
 foreach ($vars as $type) {
     if (isset($_POST[$type]) and is_numeric($_POST[$type])) {
@@ -25,8 +25,8 @@ foreach ($vars as $type) {
 
 
 $sql='
-select id-1 id, volume,typename from evesupport.compressedOre 
-join invTypes on (compressedOre.typeid=invTypes.typeid) order by id asc
+select id-1 id, volume,typename from evesupport.compressedIce 
+join invTypes on (compressedIce.typeid=invTypes.typeid) order by id asc
 ';
 
 $stmt = $dbh->prepare($sql);
@@ -44,18 +44,18 @@ $max=array_map("sum", $requirements, $overage);
 
 $ret = lpsolve('set_obj_fn', $lp, $volume);
 
-foreach (range(1, 16) as $col) {
+foreach (range(1, 9) as $col) {
     lpsolve('set_int', $lp, $col, 1);
 }
 
-$sql='select id,coalesce(quantity,0) quantity,valueInt skill from evesupport.compressedOre
-join dgmTypeAttributes on (compressedOre.typeid=dgmTypeAttributes.typeid and attributeID=790)
-left join invTypeMaterials on (compressedOre.typeid=invTypeMaterials.typeid and materialtypeid=:mineral)
+$sql='select id,coalesce(quantity,0) quantity,valueInt skill from evesupport.compressedIce
+join dgmTypeAttributes on (compressedIce.typeid=dgmTypeAttributes.typeid and attributeID=790)
+left join invTypeMaterials on (compressedIce.typeid=invTypeMaterials.typeid and materialtypeid=:mineral)
 order by id asc';
 
 $stmt = $dbh->prepare($sql);
 
-$mineralid=array(34,35,36,37,38,39,40,11399);
+$mineralid=array(16272,16273,16274,16275,17889,17887,17888);
 
 
 $x=1;
@@ -63,7 +63,7 @@ $refinebase=1*($_POST['facility']/100)
     *(($_POST['skill-3385']*0.03)+1)
     *(($_POST['skill-3389']*0.02)+1)
     *(($_POST['implant']/100)+1);
-foreach (range(0, 7) as $min) {
+foreach (range(0, 6) as $min) {
     $numbers=array();
     $stmt->execute(array(":mineral"=>$mineralid[$min]));
     while ($row = $stmt->fetchObject()) {
@@ -77,27 +77,6 @@ foreach (range(0, 7) as $min) {
 
 
 $orelimit= array_fill(0, $blueprints, Infinite);
-if ($_POST['oretype']=='highsec') {
-    $orelimit=[0,0,0,0,0,0,0,Infinite,0,Infinite,0,Infinite,Infinite,Infinite,Infinite,0];
-} elseif ($_POST['oretype']=='lns') {
-    $orelimit=[Infinite,Infinite,Infinite,Infinite,Infinite,Infinite,Infinite,0,Infinite,0,Infinite,0,0,0,0,Infinite];
-} elseif ($_POST['oretype']=='nullsec') {
-    $orelimit=[Infinite,Infinite,Infinite,Infinite,0,0,0,0,Infinite,0,Infinite,0,0,0,0,Infinite];
-} elseif ($_POST['oretype']=='custom'){
-    if (strlen($_POST['custombitmap'])==16) {
-        $orearray=str_split($_POST['custombitmap']);
-        $orelimit=array();
-        foreach ($orearray as $oreval) {
-            if ($oreval==1) {
-                $orelimit[]=Infinite;
-            } else {
-                $orelimit[]=0;
-            }
-        }
-#        var_dump($orelimit);
-    }
-}
-
 
 
 $ret = lpsolve('set_lowbo', $lp, array_fill(0, $blueprints, 0));
@@ -109,9 +88,9 @@ $modules=array();
 $actual=array();
 if ($solution == 0) {
 
-    $sql="select id-1 id,typename,valueInt skill from evesupport.compressedOre
-    join dgmTypeAttributes on (compressedOre.typeid=dgmTypeAttributes.typeid and attributeID=790)
-    join invTypes on (compressedOre.typeid=invTypes.typeid) order by id asc";
+    $sql="select id-1 id,typename,valueInt skill from evesupport.compressedIce
+    join dgmTypeAttributes on (compressedIce.typeid=dgmTypeAttributes.typeid and attributeID=790)
+    join invTypes on (compressedIce.typeid=invTypes.typeid) order by id asc";
     $names=array();
     $skill=array();
     $stmt = $dbh->prepare($sql);
@@ -125,7 +104,7 @@ if ($solution == 0) {
     $sql=<<<EOS
 select materialtypeid,floor(quantity*:quantity*:refine) quantity 
 from eve.invTypeMaterials itm 
-join evesupport.compressedOre co 
+join evesupport.compressedIce co 
 where itm.typeid=co.typeid and id=:type+1
 EOS;
     $stmt = $dbh->prepare($sql);
@@ -160,4 +139,4 @@ $smarty->assign('requirements', $requirements);
 $smarty->assign('overage', $overage);
 $smarty->assign('actual', $actual);
 #var_dump($modules);
-$smarty->display('calculate.tpl');
+$smarty->display('icecalculate.tpl');
