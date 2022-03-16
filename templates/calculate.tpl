@@ -10,7 +10,7 @@
 </thead>
 <tbody>
 {foreach $modules as $module}
-    <tr><td>{$module[0]}</td><td class='text-right'>{$module[1]}</td><td class='text-right'>{$module[2]}</td><td>{$module[3]|string_format:"%.2f"}</td></tr>
+    <tr><td>{$module[0]}</td><td class='text-right'>{$module[1]*100}</td><td class='text-right'>{$module[2]}</td><td>{$module[3]|string_format:"%.2f"}</td></tr>
 {/foreach}
 </tbody>
 <tfoot>

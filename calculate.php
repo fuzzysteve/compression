@@ -25,7 +25,7 @@ foreach ($vars as $type) {
 
 
 $sql='
-select id-1 id, volume,typename from evesupport.compressedOre 
+select id-1 id, truncate(volume*portionSize,3) volume,typename from evesupport.compressedOre 
 join invTypes on (compressedOre.typeid=invTypes.typeid) order by id asc
 ';
 
@@ -48,7 +48,7 @@ foreach (range(1, 16) as $col) {
     lpsolve('set_int', $lp, $col, 1);
 }
 
-$sql='select id,coalesce(quantity,0) quantity,valueInt skill from evesupport.compressedOre
+$sql='select id,coalesce(quantity,0) quantity,valueFloat skill from evesupport.compressedOre
 join dgmTypeAttributes on (compressedOre.typeid=dgmTypeAttributes.typeid and attributeID=790)
 left join invTypeMaterials on (compressedOre.typeid=invTypeMaterials.typeid and materialtypeid=:mineral)
 order by id asc';
@@ -109,7 +109,7 @@ $modules=array();
 $actual=array();
 if ($solution == 0) {
 
-    $sql="select id-1 id,typename,valueInt skill from evesupport.compressedOre
+    $sql="select id-1 id,typename,valueFloat skill from evesupport.compressedOre
     join dgmTypeAttributes on (compressedOre.typeid=dgmTypeAttributes.typeid and attributeID=790)
     join invTypes on (compressedOre.typeid=invTypes.typeid) order by id asc";
     $names=array();
@@ -126,6 +126,7 @@ if ($solution == 0) {
 select materialtypeid,floor(quantity*:quantity*:refine) quantity 
 from eve.invTypeMaterials itm 
 join evesupport.compressedOre co 
+join eve.invTypes it on it.typeid=co.typeid
 where itm.typeid=co.typeid and id=:type+1
 EOS;
     $stmt = $dbh->prepare($sql);
